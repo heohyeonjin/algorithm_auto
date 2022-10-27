@@ -17,7 +17,7 @@ class Main{
                 long answer = BinarySearch(simsa[0], simsa[N-1]*M);
                 System.out.println(answer);
         }
-        
+
         public static long BinarySearch(long left, long right){
                 long answer = 0;
                 while(left<=right){
@@ -38,25 +38,27 @@ class Main{
                 long count = 0;
                 for(int i=0;i<N;i++){
                         long t = simsa[i]; // 심사대 시간
-                        count+=count_num(t,time);
+                        count+=time/t;
+                        if(count>M) break;
                 }
                 return count;
         }
 
-        public static long count_num(long sinsa_time, long total_time){
-                int left = 0;
-                int right = M;
-                int answer = 0;
-                while(left<=right){
-                        int mid = (left+right)/2;
-                        if(mid*sinsa_time>total_time){
-                                right = mid-1;
-                        }
-                        else{
-                                answer = mid;
-                                left = mid+1;
-                        }
-                }
-                return answer;
-        }
+//        // 입국 가능한 사람 수 구하기
+//        public static long count_num(long sinsa_time, long total_time){
+//                int left = 0;
+//                int right = M;
+//                int answer = 0;
+//                while(left<=right){
+//                        int mid = (left+right)/2;
+//                        if(mid*sinsa_time>total_time){
+//                                right = mid-1;
+//                        }
+//                        else{
+//                                answer = mid;
+//                                left = mid+1;
+//                        }
+//                }
+//                return answer;
+//        }
 }
