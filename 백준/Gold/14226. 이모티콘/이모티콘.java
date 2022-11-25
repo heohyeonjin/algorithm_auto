@@ -5,13 +5,6 @@ public class Main {
     static int emo_clip[] = new int[1001];
     static boolean visited[][] = new boolean[1001][1001];
     public static void main(String[] args) throws IOException{
-        // 현재 클립보드 개수
-        // 현재 이모티콘 갯수
-        // (,) 이모티콘,클립보드
-        // (1,0)
-        // (1,1) (1,0) (0,0)
-        // (1,1) (2,0) (0,1) (1,1) (1,0) (이모티콘 0이면 X)
-        //
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         S = Integer.parseInt(br.readLine());
         int answer = BFS();
@@ -47,12 +40,13 @@ public class Main {
                         cur_emo = cur[0]-1;
                         cur_clip = cur[1];
                     }
-                    if(cur_emo>=0 && cur_clip>=0 && cur_emo<=1000){
-                        if(!visited[cur_emo][cur_clip]){
-                            visited[cur_emo][cur_clip] = true;
-                            queue.offer(new int[]{cur_emo,cur_clip});
+                    if(cur_emo>=0 && cur_clip>=0 && cur_emo<=1000) {
+                        if (!(cur_emo == 0 && cur_clip == 0)) {
+                            if (!visited[cur_emo][cur_clip]) {
+                                visited[cur_emo][cur_clip] = true;
+                                queue.offer(new int[]{cur_emo, cur_clip});
+                            }
                         }
-
                     }
                 }
             }
