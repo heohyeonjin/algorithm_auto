@@ -20,6 +20,7 @@ class Country implements Comparable<Country>{
 public class Main {
     static ArrayList<Country> graph[];
     static int dp[];
+    static boolean visited[];
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
@@ -39,6 +40,7 @@ public class Main {
             graph[a].add(new Country(b, cost));
         }
 
+        visited = new boolean[N+1];
         dp = new int[N + 1];
         for (int i = 0; i <= N; i++) {
             dp[i] = Integer.MAX_VALUE;
@@ -56,11 +58,12 @@ public class Main {
 
         while(!pq.isEmpty()){
             Country cur = pq.poll();
+            visited[cur.v] = true;
             if(cur.v==des){
                 return cur.cost;
             }
             for(Country x : graph[cur.v]){
-                if(cur.cost+x.cost<dp[x.v]){
+                if(!visited[x.v] && cur.cost+x.cost<dp[x.v]){
                     dp[x.v] = cur.cost+x.cost;
                     pq.offer(new Country(x.v,cur.cost+x.cost));
                 }
