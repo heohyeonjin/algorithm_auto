@@ -64,10 +64,11 @@ public class Main {
             Wall cur = pq.poll();
             Pos p = cur.pos;
             visited[p.row][p.col] = true;
+            if(p.row==N-1 && p.col==M-1) return;
+
             for(int i=0;i<4;i++){
                 int n_row = p.row+dir_row[i];
                 int n_col = p.col+dir_col[i];
-
                 if(n_row>=0 && n_col>=0 && n_row<N && n_col<M){
                     if(!visited[n_row][n_col]){
                         if(miro[n_row][n_col]=='1'){ // 벽이면
