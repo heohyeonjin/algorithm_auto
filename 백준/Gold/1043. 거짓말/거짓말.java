@@ -82,8 +82,7 @@ public class Main {
 
     public static int find(int idx){
         if(idx==parent[idx]) return idx;
-        parent[idx] = find(parent[idx]);
-        return parent[idx];
+        else return find(parent[idx]);
     }
 
     public static void union(int a, int b){
