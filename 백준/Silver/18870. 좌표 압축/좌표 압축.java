@@ -17,11 +17,13 @@ public class Main {
         HashMap<Integer, Integer> orderMap = new HashMap<>();
 
         int order = 0;
+        int prev = sortednums[0];
         for(int i=0;i<N;i++){
-            if(!orderMap.containsKey(sortednums[i])){
-                orderMap.put(sortednums[i],order);
+            if(prev!=sortednums[i]){
                 order++;
             }
+            orderMap.put(sortednums[i],order);
+            prev = sortednums[i];
         }
 
         StringBuilder sb = new StringBuilder();
